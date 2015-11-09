@@ -1,0 +1,162 @@
+﻿@model   OnlineShopping.Web.Models.OrderViewModel
+
+
+@{
+
+    ViewBag.Title = "ViewCart";
+
+}
+
+<style>
+    .loader {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+       
+    }
+</style>
+
+
+@section scripts{
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#receipt").fadeIn(5000);
+        $(".loader").fadeOut(3000);
+       
+    })
+</script>
+
+     @*Load jQuery and the validate plugin 
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script>
+    $(document).ready(function () {
+
+        $.post("/Product/ViewCart", function (data) {
+            console.log(data);
+            $("#product").html();
+
+                    });
+    });
+    </script>*@
+}
+
+<div class="loader"><img src="~/Content/images/animate.gif" /></div>
+<div id="product"></div>
+
+<div class="container" id="receipt" style="display:none">
+    <div class="row">
+        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong>E-Shop</strong>
+                        <br>
+                        2100 Lygten 37
+                        <br>
+                        Copenhagen, Danmark
+                        <br>
+                        <abbr title="Phone">P:</abbr> (0045)224-5555
+                    </address>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                    <p>
+                        <em>Customer: @Model.UserName</em>
+                    </p>
+                    <p>
+                        <em>Moile: @Model.Mobile</em>
+                    </p>
+                    <p>
+                        <em>Address: @Model.Address</em>
+                    </p>
+                    <p>
+                        <em>Date: @DateTime.Now</em>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h1>Receipt</h1>
+                </div>
+                </span>
+                <div id="product"></div>
+                <table class="table table-hover">
+                    <thead>
+
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach (var item in Model.Carts)
+                        {
+                            <tr>
+
+
+
+                                <td class="col-md-9"><em>@item.ProductName</em></td>
+                                <td class="col-md-1" style="text-align: center"> @item.Quantity </td>
+                                <td class="col-md-1 text-center"> @(string.Format("{0:c}", item.Price))</td>
+                                <td class="col-md-1 text-center">@(item.Price * item.Quantity)</td>
+
+                            </tr>
+
+
+                        }
+
+
+
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right">
+                                <p>
+                                    <strong>Subtotal:</strong>
+                                </p>
+                                <p>
+                                    <strong>Tax:</strong>
+                                </p>
+                            </td>
+                            <td class="text-center">
+                                <p>
+                                    <strong>@Model.TotalPrice</strong>
+                                </p>
+                                <p>
+                                    <strong>@(Convert.ToDecimal(Model.TotalPrice) * Convert.ToDecimal(TempData["Tax"])) </strong>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong>@(string.Format("{0:c}", Model.TotalPrice)) </strong></h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="payPal" class="col-lg-5 col-lg-offset-4" style="margin-bottom:20px;">
+
+                    <a href="PayPal">
+                        <input type="image" id="btnsubmit" src="https://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif"
+                               alt="PayPal - The safer, easier way to pay online" />
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

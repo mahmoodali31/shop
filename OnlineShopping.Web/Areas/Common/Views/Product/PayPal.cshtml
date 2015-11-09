@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Data.Product>
+@using OnlineShopping.Web.Areas.Common.Models
+@using System.Configuration;
+@{
+    ViewBag.Title = "PayPal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+  
+
+
+@*<form method="post" action="@ConfigurationManager.AppSettings["PayPalSubmitUlr"]">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["paypalemail"]">
+
+   
+    
+    
+   
+    <input type="image" src="https://wwww.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" />
+</form>*@
+
+<form id="Paypal" name="Paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr method=" post">
+    <input id="cmd" name="cmd" type="hidden" value="_cart" />
+    <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["paypalemail"]">
+    <input id="return" name="return" type="hidden" value="http://localhost:49424/Checkout/IPN" />
+    <input id="cancel_return" name="cancel_return" type="hidden" value="http://localhost:49424/SportsStore/CancelFromPaypal" />
+    <input id="notify_url" name="notify_url" type="hidden" value="http://localhost:49424/SportsStore/NotifyFromPaypal" />
+    <input id="currency_code" name="currency_code" type="hidden" value="USD" />
+
+    @foreach (var item in Model)
+    {
+
+        <input type="hidden" name="item_name_1" value="@item.ProductName">
+    <input type="hidden" name="amount_1" value="55.23" />
+    }
+    
+    <input type="hidden" name="upload" value="1">
+    <input type="image" name="btnsubmit" src="https://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif"
+           alt="PayPal - The safer, easier way to pay online" />
+</form>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OnlineShopping.Domain.ProductyByCategory>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    int counter = 0;
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        if (counter != 0 && counter % 3 == 0)
+        {
+            @:</div>
+        @:<div class="row">
+    }
+
+
+
+
+
+    <div class="col-sm-4">
+        <div class="product-image-wrapper">
+            <div class="single-products">
+                <div class=" text-center">
+                    @if (item.ImagePath != null)
+                    { <img src="~/Content/images/@item.ImagePath" />
+                        <h2>@Html.DisplayFor(modelItem => item.ProductName)</h2>
+                        <h2> $@Html.DisplayFor(modelItem => item.Price)</h2>
+                    }
+                    else
+                    {
+                        <img src="~/Content/images/noPic.jpg" width="250px" height="120px" />
+                        <h2>@Html.DisplayFor(modelItem => item.ProductName)</h2>
+                        <h2>$@Html.DisplayFor(modelItem => item.Price)</h2>
+                    }
+
+
+                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                </div>
+                <div class="product-overlay">
+                    <div class="overlay-content">
+                        <h2>$@Html.DisplayFor(modelItem => item.Price)</h2>
+                        <a href="#" class="product btn btn-default add-to-cart" data-product-id="@item.PKProductId"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="choose">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+                    counter++;
+    }
+</div>

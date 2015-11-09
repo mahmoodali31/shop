@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<Data.Product>
+
+
+<div class="table-responsive cart_info">
+    <table class="table table-condensed">
+        <thead>
+            <tr class="cart_menu">
+                <td class="image">Item</td>
+                <td class="description">Name</td>
+                <td class="price">Price</td>
+                <td class="quantity">Quantity</td>
+                @*<td class="total">Total</td>*@
+                <td></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+
+                <tr id="item">
+
+                    <td class="cart_product">
+                        <a href=""><img src="~/Content/images/@item.ImagePath" alt="" width="70" height="70"></a>
+                    </td>
+                    <td class="cart_description">
+                        <p> @item.ProductName</p>
+                    </td>
+                    <td class="cart_price">
+                        <p>@(string.Format("{0:c}", item.Price))</p>
+                    </td>
+                    <td class="cart_quantity">
+                        <div class="cart_quantity_button">
+                            <a class="cart_quantity_up" href=""> + </a>
+
+                            <input class="cart_quantity_input" type="text" name="quantity" value="@item.Quantity " autocomplete=" off" size="2">
+                            <a class="cart_quantity_down" href=""> - </a>
+                        </div>
+                    </td>
+                    @*<td class="cart_total">
+                        <p class="cart_total_price">$@item.Price</p>
+                    </td>*@
+                    <td class="cart_delete">
+                        <a class="delProduct" href="#" data-product-id="@item.PKProductId"><i class="fa fa-times"></i></a>
+                    </td>
+                    @*<td>
+
+                        <a class="delProduct" href="" data-product-id="@item.PKProductId">@item.PKProductId</a>
+                    </td>*@
+
+                    @*<td class="cart_delete">
+                            <a class="delProduct" href="" data-product-id="@item.PKProductId"><i class="fa fa-times"></i></a>
+                        </td>*@
+
+                </tr>
+            }
+
+
+        </tbody>
+
+
+    </table>
+</div>

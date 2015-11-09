@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-SHOP</title>
+
+   
+</head>
+<body>
+  
+
+   
+    
+ 
+    
+        <div class="container body-content">
+            
+            
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            
+                        </div>
+                       
+
+                    </div>
+                </div>
+
+            </section>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <address>
+                                    <strong>E-Shop</strong>
+                                    <br>
+                                    2100 Lygten 37
+                                    <br>
+                                    Copenhagen, Danmark
+                                    <br>
+                                    <abbr title="Phone">P:</abbr> (0045)224-5555
+                                </address>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                                <p>
+                                    <em>[UserName]</em>
+                                </p>
+                                <p>
+                                    <em>[Mobile]</em>
+                                </p>
+                                <p>
+                                    <em>[Adderss]</em>
+                                </p>
+                                <p>
+                                    <em>[Date]</em>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-center">
+                                <h1>Receipt</h1>
+                            </div>
+                            </span>
+                            <div id="product"></div>
+                            <table class="table table-hover">
+                                <thead>
+
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>#</th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-center">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                    <tr>
+
+
+
+                                        <td class="col-md-9"><em>[ProductName]</em></td>
+                                        <td class="col-md-1" style="text-align: center"> [Quantity] </td>
+                                        <td class="col-md-1 text-center"> [Price]</td>
+                                        <td class="col-md-1 text-center">[SubPrice]</td>
+
+                                    </tr>
+
+
+
+
+
+
+                                    <tr>
+                                        <td>   </td>
+                                        <td>   </td>
+                                        <td class="text-right">
+                                            <p>
+                                                <strong>Subtotal:</strong>
+                                            </p>
+                                            <p>
+                                                <strong>Tax:</strong>
+                                            </p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>
+                                                <strong>[TotalPrice]</strong>
+                                            </p>
+                                            <p>
+                                                <strong>[Tax] </strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>   </td>
+                                        <td>   </td>
+                                        <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                        <td class="text-center text-danger"><h4><strong>[TotalPrice] </strong></h4></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+           
+            
+        </div>
+  
+
+   
+
+
+
+</body>
+</html>

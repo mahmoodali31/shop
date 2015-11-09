@@ -1,0 +1,93 @@
+﻿@model OnlineShopping.Web.Areas.Common.Models.ItemViewModel
+
+
+
+@{
+    ViewBag.Title = "ViewCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            url = "NoOfItemInTheCart";
+            $.get(url, function (data) {
+
+                console.log(data);
+                $("#count").empty();
+                $("#count").append(data);
+
+
+            });
+
+        });
+
+    </script>
+}
+
+
+<section id="cart_items">
+    <div class="container">
+        
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description">Name</td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+
+                  
+                    <tr>
+
+                        <td class="cart_product">
+                            <a href=""><img src="~/Content/images/@item.Image" alt="" width="70" height="70"></a>
+                        </td>
+                        <td class="cart_description">
+                           <p> @item.ProductName</p>
+                        </td>
+                        <td class="cart_price">
+                            <p>$@item.Price</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <div class="cart_quantity_button">
+                                <a class="cart_quantity_up" href=""> + </a>
+                               
+                                <input class="cart_quantity_input" type="text" name="quantity" value="@item.Quantity " autocomplete=" off" size="2">
+                                <a class="cart_quantity_down" href=""> - </a>
+                            </div>
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price">$@item.Price</p>
+                        </td>
+                        <td class="cart_delete">
+                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>
+                    }
+                       
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pull-right" style="margin-bottom:20px;">
+            @Html.ActionLink("Checkout", "CheckOut" , new { Controller = "Order", Area = "Common" }, new { @class = "btn btn-primary" })
+            
+        </div>
+    </div>
+</section>
+    
+

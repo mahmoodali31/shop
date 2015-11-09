@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af7db627f0e74f78aa1a88d81eb4f9cd" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="ShoppingCartModel.Order" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="ShoppingCartModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="ShoppingCartModel.Product" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ShoppingCartModel.ShoppingCart" Width="1.5" PointX="5.75" PointY="5.5" />
+        <EntityTypeShape EntityType="ShoppingCartModel.User" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="ShoppingCartModel.UserAddress" Width="1.5" PointX="3" PointY="10.375" />
+        <AssociationConnector Association="ShoppingCartModel.FK_Order_User" />
+        <AssociationConnector Association="ShoppingCartModel.FK_OrderDetails_Order" />
+        <AssociationConnector Association="ShoppingCartModel.FK_OrderDetails_Product" />
+        <AssociationConnector Association="ShoppingCartModel.FK_Product_Product" />
+        <AssociationConnector Association="ShoppingCartModel.FK_UserAddress_User1" />
+        <EntityTypeShape EntityType="ShoppingCartModel.Category" Width="1.5" PointX="0.75" PointY="1.75" />
+        <AssociationConnector Association="ShoppingCartModel.FK_Product_Category" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

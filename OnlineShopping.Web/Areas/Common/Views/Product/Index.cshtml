@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="loading" style="display:none;">
+     <img src="~/Content/images/animate.gif" alt=""/>
+</div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+             
+                <div id="category"></div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <div id="product"></div>
+                    
+                </div>
+               
+
+            </div>
+        </div>
+    </div>
+    <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <ul class="list-inline item-details">
+                <li><a href="http://themifycloud.com">ThemifyCloud</a></li>
+                <li><a href="http://themescloud.org">ThemesCloud</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+   script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script src="~/Content/style/js/main.js"></script>
+<script src="~/Content/style/js/jquery.prettyPhoto.js"></script>
+<script src="~/Content/style/js/jquery.scrollUp.min.js"></script>
+<script src="~/Scripts/script.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $.scrollUp({
+                scrollName: 'scrollUp', // Element ID
+                scrollDistance: 300, // Distance from top/bottom before showing element (px)
+                scrollFrom: 'top', // 'top' or 'bottom'
+                scrollSpeed: 300, // Speed back to top (ms)
+                easingType: 'linear', // Scroll to top easing (see http://easings.net/)
+                animation: 'fade', // Fade, slide, none
+                animationSpeed: 200, // Animation in speed (ms)
+                scrollTrigger: false, // Set a custom triggering element. Can be an HTML string or jQuery object
+                //scrollTarget: false, // Set a custom target element for scrolling to the top
+                scrollText: '<i class="fa fa-angle-up"></i>', // Text for element, can contain HTML
+                scrollTitle: false, // Set a custom <a> title if required.
+                scrollImg: false, // Set true to use image
+                activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+                zIndex: 2147483647 // Z-Index for the overlay
+            });
+        });
+    });
+</script>
+
+}

@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-SHOP</title>
+    <style>
+       body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    border:1px solid #e6d9d9;
+    border-radius:5px;
+    background-color:#d4cfcf;
+
+}
+table, td, th {
+border: 1px solid #808080;
+}
+table {
+    width: 100%;
+    margin-bottom:20px;
+}
+
+th {
+    height: 50px;
+}
+th {
+    background-color: #212122;
+    color: white;
+}
+
+
+
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+
+
+
+.logo{
+	font-size: 23px;
+}
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+
+
+
+
+    <div class="container body-content">
+
+
+       
+
+        <div class="container">
+            <div class="row">
+                <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <address>
+                                <strong>E-Shop</strong>
+                                <br>
+                                2100 Lygten 37
+                                <br>
+                                Copenhagen, Danmark
+                                <br>
+                                <abbr title="Phone">P:</abbr> (0045)224-5555
+                            </address>
+                        </div>
+                       <div style="position:relative;top:0px;float:right">
+                            <p>
+                                <em>[UserName]</em>
+                            </p>
+                            <p>
+                                @Model.Mobile
+                            </p>
+                            <p>
+                                <em>[Adderss]</em>
+                            </p>
+                            <p>
+                                <em>[Date]</em>
+                            </p>
+                        </div>
+                    </div>
+                    <center>
+                        <div class="row">
+                            <div class="text-center">
+                                <center> <h1>Receipt</h1></center>
+                            </div>
+
+
+                            <table class="table table-hover">
+                                <thead>
+
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-center">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                    @foreach (var item in Model.Carts)
+                                    {
+                                    <tr>
+
+
+
+                                        <td class="col-md-9"><em>@item.ProductName</em></td>
+                                        <td class="col-md-1" style="text-align: center"> @item.Quantity </td>
+                                        <td class="col-md-1 text-center"> @(string.Format("{0:c}", item.Price))</td>
+                                        <td class="col-md-1 text-center">@(item.Price * item.Quantity)</td>
+
+                                    </tr>
+
+
+                                    }
+
+
+
+
+
+
+                                    <tr>
+                                        <td>   </td>
+                                        <td>   </td>
+                                        <td class="text-right">
+                                            <p>
+                                                <strong>Subtotal:</strong>
+                                            </p>
+                                            <p>
+                                                <strong>Tax:</strong>
+                                            </p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>
+                                                <strong>[TotalPrice]</strong>
+                                            </p>
+                                            <p>
+                                                <strong>[Tax] </strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>   </td>
+                                        <td>   </td>
+                                        <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                        <td class="text-center text-danger"><h4><strong>[TotalPrice] </strong></h4></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </center>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+</body>
+</html>
+

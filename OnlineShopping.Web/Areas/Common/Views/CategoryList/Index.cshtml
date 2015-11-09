@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Data.Category>
+
+@{
+   
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+   
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.CategoryName, "Index", new { Controller = "ProductByCategoryId", Area = "Common", FKCatId = item.PKCategoryId })
+     
+            
+        </td>
+       
+        
+        
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Data.Product>
+
+
+
+@{
+    ViewBag.Title = "ViewCart";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <!-- Load jQuery and the validate plugin -->
+
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/script.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            url = "NoOfItemInTheCart";
+            $.get(url, function (data) {
+
+                console.log(data);
+                $("#count").empty();
+                $("#count").append(data);
+
+
+            });
+
+        });
+
+
+    </script>
+
+}
+
+
+<section id="cart_items">
+    <div class="container">
+        <div id="cartItem">
+            @Html.Partial("_ViewCartItem",Model)
+        </div>
+        
+
+        <div class="pull-right" style="margin-bottom:20px;">
+            @Html.ActionLink("Checkout", "CheckOut" , new { Controller = "Order", Area = "Common" }, new { @class = "btn btn-primary" })
+            
+        </div>
+    </div>
+</section>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

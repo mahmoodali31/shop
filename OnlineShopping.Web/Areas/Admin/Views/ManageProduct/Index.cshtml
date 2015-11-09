@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+
+
+
+
+    <!-- Load jQuery and the validate plugin -->
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script>
+        $("#Category").change(function() {
+            var categoryId = $(this).val();
+
+            $.post("/ManageProduct/GetProductByCategoryId?id=" + categoryId, function(data) {
+
+                $("#productList").html(data);
+                //console.log(data);
+            });
+
+        });
+        $("#btnCreate").click(function() {
+            alert("a");
+        });
+
+    </script>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3" style="margin-bottom: 25px; ">
+            @Html.DropDownList("Category", null, "Select Category", new { @class = "form-control" })
+        </div>
+    </div>
+
+    
+
+
+    <div id="productList"></div>
+</div>

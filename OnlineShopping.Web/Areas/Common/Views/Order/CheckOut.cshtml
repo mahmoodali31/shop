@@ -1,0 +1,335 @@
+﻿
+
+@{
+    ViewBag.Title = "Create";
+   
+}
+
+
+   <style>
+    .loader {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+    }
+</style>
+
+
+
+    @section scripts{
+
+
+
+
+<!-- Load jQuery and the validate plugin -->
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+        
+
+
+
+
+        
+
+<script>
+
+    $("#next-step").click(function () {
+        if (($('#userform').valid()) && ($('#addressform').valid()))
+        {
+            var email = $("#txtEmail").val();
+            $.post("CheckEmailIdIfExists?email=" + email, function (data) {
+                if (data == "True") {
+                    $('p').show();
+                    $('#txtEmail').closest('.form-group').addClass('has-error');
+
+                    return false;
+                }
+                else {
+                    $('#verifyEmail').hide();
+                    $(".loader").show();
+                    $.post("/Order/OrderDetail", $("form").serialize(), function (r) {
+                        $("#userInfo").hide();
+                        $("#btnWizard").hide();
+                        
+                        $("#orderDetail").html(r).fadeIn(4000);
+                        $(".loader").fadeOut(3000);
+                    });
+                    //$.post("/Product/ViewCart", function (data) {
+                    //    console.log(data);
+                    //    $("#product").html();
+
+                    //});
+                }
+            });
+        }
+       if ($('#addressform').valid())
+        {
+            
+        }
+       
+    })
+    $(function () {
+
+        // Setup form validation on the #register-form element
+        $('#userform').validate({
+
+            // Specify the validation rules
+            rules: {
+                firstname: "required",
+                lastname: "required",
+                password: "required",
+                contact: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+
+            },
+
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+
+
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+
+    });
+
+</script>
+
+<script>
+
+    // When the browser is ready...
+    $(function () {
+
+        // Setup form validation on the #register-form element
+        $('#addressform').validate({
+
+            // Specify the validation rules
+            rules: {
+                address: "required",
+                city: "required",
+                state: "required",
+                country:"required",
+                
+            },
+
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+
+
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+
+    });
+
+</script>
+
+
+
+    }
+
+
+
+<div class="contianer">
+
+    <div id="userInfo">
+        <div class="row">
+
+            <div class="col-sm-6  ">
+                <div class="navbar-form  ">
+                    <div class="row">
+                        <center><h4> User Information</h4></center>
+                        <div class="col-sm-12 col-lg-offset-2 ">
+                            <div class="shopper-info">
+
+                                <form action="" method="post" id="userform" novalidate="novalidate">
+
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input type="email" id="txtEmail" class="form-control" name="email" placeholder="Email">
+
+                                            </div>
+                                            <p id="verifyEmail" style="display:none;" class='has-error'>Email is already registerd</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input type="password" class="form-control" name="password" placeholder="Password">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input type="text" class="form-control" name="Mobile" placeholder="Contact No">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="col-sm-6 ">
+                <div class="navbar-form pull-right ">
+                    <div class="row">
+                        <center><h4>Shipping Address</h4></center>
+                        <div class="col-sm-12 col-lg-offset-2 ">
+                            <div class="shopper-info">
+
+                                <form action="" method="post" id="addressform" novalidate="novalidate">
+
+
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <input id="txtSignInEmail" type="text" class="form-control" name="address" placeholder="Address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <input id="txtSignInEmail" type="text" class="form-control" name="city" placeholder="City">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input id="txtSignInPassword" type="text" class="form-control" name="state" placeholder="State">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input id="txtSignInPassword" type="text" class="form-control" name="country" placeholder="Country">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:20px;">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <input id="txtSignInEmail" type="text" class="form-control" name="zipcode" placeholder="Zip Code">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div id="orderDetail" style="display:none;">
+        
+
+    </div>
+    <div class="loader" style="display:none;"><img src="~/Content/images/animate.gif" /></div>
+</div>
+
+
+
+
+<p class="pull-right" id="btnWizard">
+    <input type="submit" id="next-step" class="btn btn-primary" name="back-step" value="Continue" />
+    @*<input type="submit" id="next-step" class="btn btn-primary" name="next-step" value="Next" />*@
+    
+
+</p>
+
+
+
+
